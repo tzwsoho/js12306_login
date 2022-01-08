@@ -92,10 +92,6 @@ get('https://kyfw.12306.cn/otn/login/conf', {
 			// console.log(html3);
 			console.log(answer);
 
-			// jar.setCookie(request.cookie('cursorStatus=off; Path=/'), 'https://kyfw.12306.cn/', function (err, cookie){})
-			// jar.setCookie(request.cookie('guidesStatus=off; Path=/'), 'https://kyfw.12306.cn/', function (err, cookie){})
-			// jar.setCookie(request.cookie('highContrastMode=defaltMode; Path=/'), 'https://kyfw.12306.cn/', function (err, cookie){})
-
 			get('https://kyfw.12306.cn/passport/captcha/captcha-check?answer=' + answer + '&rand=sjrand&login_site=E&_=' + Math.random(), {
 				'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
 				'Origin': 'https://kyfw.12306.cn',
@@ -128,6 +124,19 @@ get('https://kyfw.12306.cn/otn/login/conf', {
 					}
 
 					console.log(html5);
+
+					get('https://kyfw.12306.cn/otn/confirmPassenger/getPassengerDTOs', {
+						'Origin': 'https://kyfw.12306.cn',
+						'Referer': 'https://kyfw.12306.cn/otn/leftTicket/init',
+						'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36'
+					}, function (err6, html6) {
+						if (err6) {
+							console.log('err6', err6);
+							return;
+						}
+
+						console.log('html6', html6);
+					});
 				});
 			});
 		});
